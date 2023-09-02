@@ -10,12 +10,12 @@
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body>
-		<header class="wrapper">
+		<header class="wrapper" id="home">
 			<a href="#home" class="logo">
 				<img src="assets/logo.svg" alt="Couply logo" />
 			</a>
 
-			<nav class="nav-primary mobile-hidden">
+			<nav class="nav-primary">
 				<ul>
 					<li class="active">
 						<a href="#home">Home</a>
@@ -33,7 +33,7 @@
 			</nav>
 
 			<a href="#" class="menu-mobile">
-				<img src="assets/menu.svg" alt="Menu" />
+				<div class="menu"></div>
 			</a>
 
 			<a href="#" class="cta-btn-header mobile-hidden">
@@ -43,7 +43,7 @@
 		</header>
 
 		<main>
-			<section id="home">
+			<section class="home">
 				<div class="home--col1">
 					<div class="home--col1--text wrapper">
 						<h1>Shopping with coupons, applied automatically!</h1>
@@ -210,5 +210,29 @@
 				<span class="footer--col2__copyright">Copyright 2022-2023 @Couply LLC</span>
 			</div>
 		</footer>
+
+		<script>
+			const menuMobileBtn = document.querySelector('.menu-mobile');
+			const navMenu = document.querySelector('.nav-primary');
+
+			menuMobileBtn.addEventListener('click', e => {
+				e.preventDefault();
+				menuMobileBtn.classList.toggle('open');
+				navMenu.classList.toggle('open');
+			});
+
+			// Add an EventListener to each LI element of the nav menu
+			const nodeList = navMenu.childNodes[1].childNodes;
+
+			for (let i = 0; i < nodeList.length; i++) {
+				if (nodeList[i].nodeName === 'LI') {
+					nodeList[i].addEventListener('click', e => {
+						e.preventDefault();
+						menuMobileBtn.classList.toggle('open');
+						navMenu.classList.toggle('open');
+					});
+				}
+			}
+		</script>
 	</body>
 </html>
